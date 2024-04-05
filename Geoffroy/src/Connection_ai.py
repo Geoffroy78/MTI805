@@ -8,7 +8,7 @@ import cv2
 # Load a model
 model = YOLO('yolov8n-seg.pt')  # load an official model
 # depth_anything_vitl14, depth-anything-large-hf
-depth_estimator = pipeline(task="depth-estimation", model="LiheYoung/depth-anything-large-hf")
+depth_estimator = pipeline(task="depth-estimation", model="LiheYoung/depth-anything-small-hf")
 # model_depth = DepthAnything.from_pretrained("LiheYoung/depth_anything_vitl14")
 
 def image(path):
