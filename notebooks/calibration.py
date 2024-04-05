@@ -3,7 +3,7 @@ import cv2 as cv
 
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 pattern_size = (9, 6)
-amount_of_images = 150
+amount_of_images = 50
 
 objp = np.zeros((pattern_size[0] * pattern_size[1], 3), np.float32)
 objp[:, :2] = np.mgrid[0:pattern_size[0], 0:pattern_size[1]].T.reshape(-1, 2)
@@ -11,12 +11,15 @@ objp[:, :2] = np.mgrid[0:pattern_size[0], 0:pattern_size[1]].T.reshape(-1, 2)
 calibration_pattern_points = []
 image_projections_calibration_pattern_points = [] 
 
-camera = cv.VideoCapture(0)
+camera = cv.VideoCapture('/dev/video4')
 camera.set(cv.CAP_PROP_BUFFERSIZE, 1)
 ret, frame = camera.read()
 i = 1
 while amount_of_images > 0:
     ret, frame = camera.read()
+    if not ret:
+        print("Camera frame not read")
+        continue
     img = frame
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
 
