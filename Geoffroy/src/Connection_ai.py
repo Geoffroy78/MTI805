@@ -49,7 +49,7 @@ def analyze_image(frame):
         list_mean = []
 
         for i, (c, mask) in enumerate(resulting_masks):
-            mean_depth = depth[mask > 0].mean()
+            mean_depth = depth[mask > 0].min()
             list_mean.append(mean_depth)
         
         # Extraction des coordonnées des boîtes englobantes
